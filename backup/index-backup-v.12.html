@@ -297,13 +297,52 @@
     let currentLanguage = 'pl';
 
     function detectUserLanguage() {
-      const browserLang = navigator.language.split('-')[0];
-      if (browserLang === 'pl') {
-        setLanguage('pl');
-      } else if (browserLang === 'fr') {
-        setLanguage('fr');
+      if ('geolocation' in navigator) {
+        navigator.geolocation.getCurrentPosition(
+          position => {
+            fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}&localityLanguage=en`)
+              .then(response => response.json())
+              .then(data => {
+                const country = data.countryCode;
+                if (country === 'PL') {
+                  setLanguage('pl');
+                } else if (country === 'FR') {
+                  setLanguage('fr');
+                } else {
+                  setLanguage('en');
+                }
+              })
+              .catch(() => {
+                const browserLang = navigator.language.split('-')[0];
+                if (browserLang === 'pl') {
+                  setLanguage('pl');
+                } else if (browserLang === 'fr') {
+                  setLanguage('fr');
+                } else {
+                  setLanguage('en');
+                }
+              });
+          },
+          () => {
+            const browserLang = navigator.language.split('-')[0];
+            if (browserLang === 'pl') {
+              setLanguage('pl');
+            } else if (browserLang === 'fr') {
+              setLanguage('fr');
+            } else {
+              setLanguage('en');
+            }
+          }
+        );
       } else {
-        setLanguage('en');
+        const browserLang = navigator.language.split('-')[0];
+        if (browserLang === 'pl') {
+          setLanguage('pl');
+        } else if (browserLang === 'fr') {
+          setLanguage('fr');
+        } else {
+          setLanguage('en');
+        }
       }
     }
 
