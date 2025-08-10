@@ -365,12 +365,7 @@
     }
 
     function initializeLanguage() {
-      const savedLang = localStorage.getItem('preferred-language');
-      if (savedLang && translations[savedLang]) {
-        setLanguage(savedLang);
-      } else {
-        detectUserLanguage();
-      }
+      detectUserLanguage();
     }
 
     function setupLanguageSwitcher() {
