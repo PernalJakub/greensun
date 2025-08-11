@@ -511,80 +511,9 @@
       });
     }
 
-    // Theme Toggle Functionality
-    function initializeTheme() {
-      // Check for saved theme preference or default to 'auto'
-      const savedTheme = localStorage.getItem('theme');
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      
-      let theme;
-      if (savedTheme) {
-        theme = savedTheme;
-      } else {
-        // Auto-detect based on system preference
-        theme = prefersDark ? 'dark' : 'light';
-        localStorage.setItem('theme', theme);
-      }
-      
-      // Apply theme
-      document.documentElement.setAttribute('data-theme', theme);
-      
-      // Ensure body has the proper background color immediately
-      document.body.style.backgroundColor = theme === 'dark' ? '#0f0f10' : '#ffffff';
-    }
-
-    function setupThemeToggle() {
-      const themeToggleButtons = document.querySelectorAll('.theme-toggle');
-      
-      themeToggleButtons.forEach(button => {
-        button.addEventListener('click', function() {
-          const currentTheme = document.documentElement.getAttribute('data-theme');
-          const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-          
-          // Apply new theme
-          document.documentElement.setAttribute('data-theme', newTheme);
-          
-          // Save preference
-          localStorage.setItem('theme', newTheme);
-          
-          // Add smooth transition for the switch
-          button.style.transform = 'scale(0.95)';
-          setTimeout(() => {
-            button.style.transform = 'scale(1)';
-          }, 150);
-        });
-      });
-    }
-
-    // Listen for system theme changes
-    function setupThemeWatcher() {
-      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-      
-      mediaQuery.addEventListener('change', function(e) {
-        // Only auto-switch if no manual preference is set
-        const savedTheme = localStorage.getItem('theme');
-        if (!savedTheme) {
-          const newTheme = e.matches ? 'dark' : 'light';
-          document.documentElement.setAttribute('data-theme', newTheme);
-          localStorage.setItem('theme', newTheme);
-        }
-      });
-    }
-
-    // Initialize theme immediately to prevent flash
-    (function() {
-      const savedTheme = localStorage.getItem('theme');
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const theme = savedTheme || (prefersDark ? 'dark' : 'light');
-      document.documentElement.setAttribute('data-theme', theme);
-    })();
-
     document.addEventListener('DOMContentLoaded', function() {
       initializeLanguage();
       setupLanguageSwitcher();
-      initializeTheme();
-      setupThemeToggle();
-      setupThemeWatcher();
     });
   </script>
 
@@ -745,73 +674,6 @@
       --gradient-horizontal-fade-black: linear-gradient(120.96deg, #000000 0%, #16a049 100%);
       --font-display: "Poppins", sans-serif;
       --font-rest: "Inter", sans-serif;
-      
-      /* Background Colors */
-      --bg-primary: var(--neutral-white);
-      --bg-secondary: var(--neutral-extra-light);
-      --bg-tertiary: var(--neutral-very-light);
-      
-      /* Text Colors */
-      --text-primary: var(--neutral-black);
-      --text-secondary: var(--neutral-very-dark);
-      --text-tertiary: var(--neutral-dark);
-      --text-muted: var(--neutral-base);
-      
-      /* Border Colors */
-      --border-light: var(--neutral-very-light);
-      --border-medium: var(--neutral-light);
-      
-      /* Card/Surface Colors */
-      --surface-primary: var(--neutral-white);
-      --surface-secondary: var(--neutral-extra-light);
-      --surface-hover: rgba(0, 0, 0, 0.05);
-    }
-
-    /* Dark Mode Variables */
-    [data-theme="dark"] {
-      /* Primary Colors - kept the same for brand consistency */
-      --primary-base: #1fc55c;
-      --primary-dark: #16a049;
-      --primary-very-dark: #0f5d2a;
-      --primary-light: #0f2f17;
-      --primary-very-light: #0a1f0e;
-      
-      /* Background Colors */
-      --bg-primary: #0f0f10;
-      --bg-secondary: #000000;
-      --bg-tertiary: #242426;
-      
-      /* Text Colors */
-      --text-primary: #ffffff;
-      --text-secondary: #e5e5e6;
-      --text-tertiary: #cbcbcc;
-      --text-muted: #7c7c80;
-      
-      /* Neutral Colors - Dark Mode overrides - Keep original meaning */
-      --neutral-black: #000000;
-      --neutral-very-dark: #19191a;
-      --neutral-dark: #3e3e40;
-      --neutral-base: #7c7c80;
-      --neutral-light: #cbcbcc;
-      --neutral-very-light: #e5e5e6;
-      --neutral-extra-light: #f2f2f2;
-      --neutral-white: #ffffff;
-      
-      /* Border Colors */
-      --border-light: #2a2a2c;
-      --border-medium: #3e3e40;
-      
-      /* Card/Surface Colors */
-      --surface-primary: #1a1a1b;
-      --surface-secondary: #242426;
-      --surface-hover: rgba(255, 255, 255, 0.1);
-      
-      /* Update gradients for dark mode */
-      --gradient-horizontal-fade-white: linear-gradient(120.96deg, #0f0f10 0%, #1fc55c 100%);
-      --gradient-horizontal-fade-black: linear-gradient(120.96deg, #1a1a1b 0%, #16a049 100%);
-      
-      /* Override navbar background in dark mode to match service cards */
-      --neutral-very-light: #1a1a1b;
     }
     @media (max-width: 991px) {
       :root {
@@ -858,11 +720,9 @@
 
     body {
       margin: 0;
-      background: var(--bg-primary);
-      color: var(--text-primary);
+      background: var(--tertiary-very-light);
       font-family: var(--font-rest);
       overflow-x: hidden;
-      transition: background-color 0.3s ease, color 0.3s ease;
     }
        
     h1, h2, h3, h4, h5, h6, p {
@@ -899,7 +759,7 @@
     .font-weight-extrabold { font-weight: 800; }
 
     .green {
-      background: linear-gradient(90deg, var(--bg-primary) 35%, var(--primary-base) 100%);
+      background: linear-gradient(90deg, #ffffff 35%, var(--primary-base) 100%);
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -933,7 +793,7 @@
       transition: transform 1s ease, opacity 1s ease, box-shadow 0.3s ease;
       will-change: transform, opacity;
       backface-visibility: hidden;
-      color: var(--text-primary);
+      color: var(--neutral-black);
     }
 
     .navbar-section .navbar-container.scrolled,
@@ -1007,11 +867,10 @@
       padding: 4px 8px;
       border-radius: 4px;
       transition: background-color 0.3s ease;
-      color: var(--text-primary);
     }
 
     .language-switcher .current-lang:hover {
-      background-color: var(--surface-hover);
+      background-color: rgba(0, 0, 0, 0.05);
     }
 
     .language-switcher .flag,
@@ -1042,7 +901,7 @@
       position: absolute;
       top: 100%;
       right: 0;
-      background: var(--surface-primary);
+      background: white;
       border: 1px solid #ddd;
       border-radius: 4px;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -1071,11 +930,10 @@
       cursor: pointer;
       font-size: 14px;
       transition: background-color 0.3s ease;
-      color: var(--text-primary);
     }
 
     .language-switcher .dropdown button:hover {
-      background-color: var(--surface-hover);
+      background-color: #f5f5f5;
     }
 
     .language-switcher .dropdown button:first-child {
@@ -1102,11 +960,11 @@
       align-items: center;
       gap: 4px;
       background: transparent;
-      border: 1px solid var(--border-medium);
+      border: 1px solid var(--neutral-light);
       cursor: pointer;
       padding: 6px 8px;
       border-radius: 6px;
-      color: var(--text-primary);
+      color: var(--neutral-black);
       font-size: 12px;
       font-weight: 500;
       transition: background-color 0.3s ease;
@@ -1114,14 +972,14 @@
     }
 
     .mobile-language-switcher .current-lang:hover {
-      background-color: var(--surface-hover);
+      background-color: rgba(0, 0, 0, 0.05);
     }
 
     .mobile-language-switcher .dropdown {
       position: absolute;
       top: 100%;
       right: 0;
-      background: var(--surface-primary);
+      background: white;
       border: 1px solid #ddd;
       border-radius: 8px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
@@ -1151,11 +1009,11 @@
       cursor: pointer;
       font-size: 14px;
       transition: background-color 0.3s ease;
-      color: var(--text-primary);
+      color: var(--neutral-black);
     }
 
     .mobile-language-switcher .dropdown button:hover {
-      background-color: var(--surface-hover);
+      background-color: #f5f5f5;
     }
 
     .mobile-language-switcher .dropdown button:first-child {
@@ -1164,108 +1022,6 @@
 
     .mobile-language-switcher .dropdown button:last-child {
       border-radius: 0 0 8px 8px;
-    }
-
-    /* Theme Toggle Styles */
-    .theme-toggle {
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 4px;
-      border-radius: 6px;
-      transition: all 0.3s ease;
-      position: relative;
-    }
-
-    .theme-toggle:hover {
-      background-color: var(--surface-hover);
-    }
-
-    .theme-toggle-track {
-      width: 48px;
-      height: 24px;
-      background-color: var(--border-medium);
-      border-radius: 12px;
-      position: relative;
-      transition: background-color 0.3s ease;
-    }
-
-    [data-theme="dark"] .theme-toggle-track {
-      background-color: var(--primary-base);
-    }
-
-    .theme-toggle-thumb {
-      width: 20px;
-      height: 20px;
-      background-color: var(--surface-primary);
-      border-radius: 50%;
-      position: absolute;
-      top: 2px;
-      left: 2px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    }
-
-    [data-theme="dark"] .theme-toggle-thumb {
-      transform: translateX(24px);
-      background-color: var(--neutral-white);
-    }
-
-    .theme-icon {
-      width: 12px;
-      height: 12px;
-      stroke: var(--text-primary);
-      transition: all 0.3s ease;
-      position: absolute;
-    }
-
-    .sun-icon {
-      opacity: 1;
-      transform: rotate(0deg);
-      stroke: #000000 !important;
-    }
-
-    .moon-icon {
-      opacity: 0;
-      transform: rotate(180deg);
-    }
-
-    [data-theme="dark"] .sun-icon {
-      opacity: 0;
-      transform: rotate(-180deg);
-    }
-
-    [data-theme="dark"] .moon-icon {
-      opacity: 1;
-      transform: rotate(0deg);
-      stroke: #ffffff !important;
-    }
-
-    /* Mobile Theme Toggle */
-    .theme-toggle-mobile {
-      margin-right: 8px;
-    }
-
-    .theme-toggle-mobile .theme-toggle-track {
-      width: 40px;
-      height: 20px;
-    }
-
-    .theme-toggle-mobile .theme-toggle-thumb {
-      width: 16px;
-      height: 16px;
-    }
-
-    .theme-toggle-mobile .theme-icon {
-      width: 10px;
-      height: 10px;
-    }
-
-    [data-theme="dark"] .theme-toggle-mobile .theme-toggle-thumb {
-      transform: translateX(20px);
     }
 
     .navbar-section .navbar-right a,
@@ -1291,18 +1047,7 @@
     .navbar-section .mobile-nav-right a svg {
       width: 22px;
       height: 22px;
-      fill: var(--text-primary);
-    }
-
-    /* Force white SVG icons in dark mode */
-    [data-theme="dark"] .navbar-section .navbar-right a,
-    [data-theme="dark"] .navbar-section .mobile-nav-right a {
-      color: #ffffff !important;
-    }
-    
-    [data-theme="dark"] .navbar-section .navbar-right a svg,
-    [data-theme="dark"] .navbar-section .mobile-nav-right a svg {
-      fill: #ffffff !important;
+      fill: var(--neutral-black);
     }
 
     .navbar-section .hamburger-icon {
@@ -1323,7 +1068,7 @@
       height: 3px;
       width: 100%;
       border-radius: 10px;
-      background-color: var(--text-primary);
+      background-color: var(--neutral-black);
       left: 0;
       transition: all 0.3s ease;
     }
@@ -1370,7 +1115,7 @@
       height: auto;
       max-height: 0;
       overflow: hidden;
-      color: var(--text-primary);
+      color: var(--neutral-black);
       background-color: var(--neutral-very-light);
       display: flex;
       opacity: 0;
@@ -1451,12 +1196,7 @@
     .navbar-section .mobile-nav-right a svg {
       width: 28px;
       height: 28px;
-      fill: var(--text-primary);
-    }
-
-    /* Force white mobile SVG icons in dark mode */
-    [data-theme="dark"] .navbar-section .mobile-nav-right a svg {
-      fill: #ffffff !important;
+      fill: var(--neutral-black);
     }
 
 
@@ -1531,8 +1271,6 @@
       padding-top: 60px;
       overflow: hidden;
       display: flex;
-      /* Same background color as navbar */
-      background-color: var(--neutral-very-light);
       /* box-shadow: inset 0 -10px 12px 1px rgba(0, 0, 0, 0.15); */
 
     }
@@ -1567,7 +1305,6 @@
       opacity: 0.6;
       animation: bounce 3s infinite;
       z-index: 10;
-      color: var(--neutral-base);
     }
 
     @keyframes bounce {
@@ -1589,7 +1326,7 @@
       inset: 0;
       width: 100%;
       height: 100%;
-      z-index: 0;
+      z-index: -1;
       overflow: hidden;
     }
 
@@ -1609,7 +1346,7 @@
       margin-top: 10px;
       border-radius: 24px;
       transition: box-shadow 1s ease, background-color 1s ease;
-      background-color: transparent;
+      background-color: #000;
     }
 
     .slider-section .card.fade-bg {
@@ -1641,18 +1378,7 @@
       text-align: center;
       padding: 2rem;
       width: 100%;
-      color: #ffffff;
-      position: relative;
-      z-index: 1;
-    }
-    
-    /* Make sure CTA text is visible over video in both themes */
-    [data-theme="light"] .slider-section .center-cta {
-      color: #ffffff;
-    }
-    
-    [data-theme="dark"] .slider-section .center-cta {
-      color: #ffffff;
+      color: var(--neutral-white);
     }
 
     .slider-section .center-cta h2 {
@@ -1829,7 +1555,7 @@
     .stat .count {
       font-size: var(--display-medium);
       font-weight: bold;
-      color: var(--text-primary);
+      color: var(--neutral-black);
       transition: all 0.3s ease;
     }
 
@@ -1841,7 +1567,7 @@
 
     .unit {
       font-size: var(--display-medium);
-      color: var(--text-primary);
+      color: var(--neutral-black);
       font-weight: bold;
     }
 
@@ -1888,7 +1614,7 @@
   /* ===== SEKCJA O NAS ===== */
   .about-section {
     padding: var(--space-6xl) var(--space-lg);
-    background: var(--bg-primary);
+    background: var(--neutral-white);
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -1905,14 +1631,14 @@
 
   .about-content h2 {
     font-size: var(--display-medium);
-    color: var(--text-primary);
+    color: var(--tertiary-base);
     margin-bottom: var(--space-lg);
     line-height: var(--line-height-display-medium);
   }
 
   .about-content p {
     font-size: var(--body-large);
-    color: var(--text-secondary);
+    color: var(--neutral-base);
     line-height: var(--line-height-body-large);
     margin-bottom: var(--space-md);
   }
@@ -2005,7 +1731,7 @@
   /* ===== SEKCJA USŁUGI ===== */
   .services-section {
     padding: var(--space-6xl) var(--space-lg);
-    background: var(--neutral-very-light);
+    background: var(--tertiary-very-light);
   }
 
   .services-container {
@@ -2020,13 +1746,13 @@
 
   .services-header h2 {
     font-size: var(--display-medium);
-    color: var(--text-primary);
+    color: var(--tertiary-base);
     margin-bottom: var(--space-md);
   }
 
   .services-header p {
     font-size: var(--body-large);
-    color: var(--text-secondary);
+    color: var(--neutral-base);
     max-width: 600px;
     margin: 0 auto;
   }
@@ -2038,7 +1764,7 @@
   }
 
   .service-card {
-    background: var(--surface-primary);
+    background: var(--neutral-white);
     padding: var(--space-xl);
     border-radius: 16px;
     text-align: center;
@@ -2081,7 +1807,7 @@
 
   .service-card h3 {
     font-size: var(--headline-large);
-    color: var(--text-primary);
+    color: var(--tertiary-base);
     margin-bottom: var(--space-md);
   }
 
@@ -2137,15 +1863,10 @@
     margin-right: var(--space-xs);
   }
 
-  /* Dark mode override for service cards - black background */
-  [data-theme="dark"] .service-card {
-    background: #000000;
-  }
-
   /* ===== GALERIA ===== */
   .gallery-section {
     padding: var(--space-6xl) var(--space-lg);
-    background: var(--bg-primary);
+    background: var(--neutral-white);
   }
 
   .gallery-container {
@@ -2160,7 +1881,7 @@
 
   .gallery-header h2 {
     font-size: var(--display-medium);
-    color: var(--text-primary);
+    color: var(--tertiary-base);
     margin-bottom: var(--space-md);
   }
 
@@ -2190,8 +1911,7 @@
     width: 40px;
     height: 40px;
     border: 2px solid var(--primary-base);
-    background: var(--surface-primary);
-    color: var(--text-primary);
+    background: white;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -2202,14 +1922,14 @@
 
   .gallery-nav-btn:hover {
     background: var(--primary-base);
-    color: #ffffff;
+    color: white;
   }
 
   .gallery-nav-btn:disabled {
     opacity: 0.3;
     cursor: not-allowed;
-    background: var(--surface-primary);
-    color: var(--text-muted);
+    background: white;
+    color: var(--neutral-base);
   }
 
   .gallery-nav-btn svg {
@@ -2227,8 +1947,8 @@
 
   .filter-btn {
     background: none;
-    border: 2px solid var(--border-medium);
-    color: var(--text-secondary);
+    border: 2px solid var(--neutral-light);
+    color: var(--neutral-base);
     padding: var(--space-xs) var(--space-md);
     border-radius: 24px;
     font-size: var(--label-large);
@@ -2360,7 +2080,7 @@
   /* ===== DLACZEGO MY ===== */
   .why-us-section {
     padding: var(--space-6xl) var(--space-lg);
-    background: var(--neutral-very-light);
+    background: var(--neutral-light);
   }
 
   .why-us-container {
@@ -2376,7 +2096,7 @@
   .why-us-header h2 {
     font-size: var(--display-medium);
     line-height: var(--line-height-display-medium);
-    color: var(--text-primary);
+    color: var(--neutral-black);
     margin-bottom: var(--space-lg);
     font-family: var(--font-display);
     font-weight: 700;
@@ -2389,7 +2109,7 @@
   }
 
   .why-us-card {
-    background: var(--surface-primary);
+    background: var(--neutral-white);
     border-radius: 16px;
     padding: var(--space-2xl);
     text-align: center;
@@ -2462,23 +2182,10 @@
     }
   }
 
-  /* Dark mode override for why-us cards - black background and white text */
-  [data-theme="dark"] .why-us-card {
-    background: #000000;
-  }
-
-  [data-theme="dark"] .why-us-card h3 {
-    color: #ffffff;
-  }
-
-  [data-theme="dark"] .why-us-card p {
-    color: var(--neutral-base);
-  }
-
   /* ===== FORMULARZ KONTAKTOWY ===== */
   .contact-section {
     padding: var(--space-6xl) var(--space-lg);
-    background: var(--bg-secondary);
+    background: var(--tertiary-very-light);
   }
 
   .contact-container {
@@ -2493,17 +2200,17 @@
 
   .contact-header h2 {
     font-size: var(--display-medium);
-    color: var(--text-primary);
+    color: var(--tertiary-base);
     margin-bottom: var(--space-md);
   }
 
   .contact-header p {
     font-size: var(--body-large);
-    color: var(--text-secondary);
+    color: var(--neutral-base);
   }
 
   .contact-form {
-    background: var(--bg-primary);
+    background: var(--neutral-white);
     padding: var(--space-5xl);
     border-radius: 16px;
     box-shadow: 0 4px 24px rgba(0,0,0,0.1);
@@ -2516,7 +2223,7 @@
   .form-group label {
     display: block;
     font-size: var(--label-large);
-    color: var(--text-primary);
+    color: var(--tertiary-base);
     margin-bottom: var(--space-xs);
     font-weight: 500;
   }
@@ -2526,13 +2233,12 @@
   .form-group select {
     width: 100%;
     padding: var(--space-sm);
-    border: 2px solid var(--border-medium);
+    border: 2px solid var(--neutral-light);
     border-radius: 8px;
     font-size: var(--body-medium);
     font-family: inherit;
     transition: border-color 0.3s ease;
-    background-color: var(--surface-primary);
-    color: var(--text-primary);
+    background-color: var(--neutral-white);
   }
 
   .form-group select {
@@ -2573,11 +2279,10 @@
     align-items: center;
     justify-content: space-between;
     padding: var(--space-sm);
-    border: 2px solid var(--border-medium);
+    border: 2px solid var(--neutral-light);
     border-radius: 8px;
     font-size: var(--body-medium);
-    background-color: var(--surface-primary);
-    color: var(--text-primary);
+    background: var(--neutral-white);
     cursor: pointer;
     transition: border-color 0.3s ease, background-color 0.3s ease;
   }
@@ -2607,8 +2312,8 @@
     top: 100%;
     left: 0;
     right: 0;
-    background-color: var(--surface-primary);
-    border: 2px solid var(--border-medium);
+    background: white;
+    border: 2px solid var(--neutral-light);
     border-top: none;
     border-radius: 0 0 8px 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
@@ -2638,11 +2343,11 @@
     font-size: var(--body-medium);
     text-align: left;
     transition: background-color 0.3s ease;
-    color: var(--text-primary);
+    color: var(--neutral-black);
   }
 
   .subject-dropdown button:hover {
-    background-color: var(--surface-hover);
+    background-color: #f5f5f5;
   }
 
   .subject-dropdown button:first-child {
@@ -2720,8 +2425,8 @@
 
   /* ===== STOPKA ===== */
   .footer-section {
-    background: #161619;
-    color: #cbcbcc;
+    background: var(--tertiary-base);
+    color: var(--neutral-light);
     padding: var(--space-5xl) var(--space-lg) var(--space-xl);
   }
 
@@ -2754,7 +2459,7 @@
 
   .footer-brand h3 {
     font-size: var(--headline-large);
-    color: #ffffff;
+    color: var(--neutral-white);
     margin: 0;
     font-family: var(--font-display);
     font-weight: 700;
@@ -2791,12 +2496,12 @@
   .footer-social a svg {
     width: 20px;
     height: 20px;
-    fill: #ffffff;
+    fill: white;
   }
 
   .footer-column h4 {
     font-size: var(--title-large);
-    color: #ffffff;
+    color: var(--neutral-white);
     margin-bottom: var(--space-md);
   }
 
@@ -2810,7 +2515,7 @@
   }
 
   .footer-column a {
-    color: #cbcbcc;
+    color: var(--neutral-light);
     text-decoration: none;
     font-size: var(--body-medium);
     transition: color 0.3s ease;
@@ -3030,20 +2735,6 @@
             </button>
           </div>
         </div>
-        <!-- Mobile Theme Toggle -->
-        <button class="theme-toggle theme-toggle-mobile" aria-label="Toggle theme">
-          <div class="theme-toggle-track">
-            <div class="theme-toggle-thumb">
-              <svg class="theme-icon sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="5"/>
-                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-              </svg>
-              <svg class="theme-icon moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-              </svg>
-            </div>
-          </div>
-        </button>
         <button class="hamburger-icon" aria-label="Toggle menu"></button>
       </div>
       <div class="navbar-right">
@@ -3067,20 +2758,6 @@
             </button>
           </div>
         </div>
-        <!-- Theme Toggle -->
-        <button class="theme-toggle" aria-label="Toggle theme">
-          <div class="theme-toggle-track">
-            <div class="theme-toggle-thumb">
-              <svg class="theme-icon sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="5"/>
-                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-              </svg>
-              <svg class="theme-icon moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-              </svg>
-            </div>
-          </div>
-        </button>
         <a href="https://www.facebook.com/greensun" target="_blank" rel="noopener" class="icon-facebook"></a>
         <a href="https://www.instagram.com/greensun" target="_blank" rel="noopener" class="icon-instagram"></a>
         <a href="https://www.linkedin.com" target="_blank" rel="noopener" class="icon-linkedin"></a>
