@@ -1194,71 +1194,80 @@
 
     /* Theme Toggle Styles */
     .theme-toggle {
-      width: 50px;
-      height: 28px;
-      background: transparent;
+      background: none;
       border: none;
       cursor: pointer;
-      padding: 0;
+      padding: 4px;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      position: relative;
     }
 
     .theme-toggle:hover {
-      background-color: transparent;
+      background-color: var(--surface-hover);
     }
 
     .theme-toggle-track {
-      width: 50px;
-      height: 28px;
-      border-radius: 14px;
-      background: var(--neutral-light);
+      width: 48px;
+      height: 24px;
+      background-color: var(--border-medium);
+      border-radius: 12px;
       position: relative;
-      transition: all 0.3s ease;
+      transition: background-color 0.3s ease;
     }
 
     [data-theme="dark"] .theme-toggle-track {
-      background: var(--neutral-dark);
+      background-color: var(--primary-base);
     }
 
     .theme-toggle-thumb {
-      width: 24px;
-      height: 24px;
+      width: 20px;
+      height: 20px;
+      background-color: var(--surface-primary);
       border-radius: 50%;
-      background: var(--neutral-white);
       position: absolute;
       top: 2px;
       left: 2px;
-      transition: all 0.3s ease;
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
 
     [data-theme="dark"] .theme-toggle-thumb {
-      left: 24px;
-      background: var(--neutral-very-dark);
+      transform: translateX(24px);
+      background-color: var(--neutral-white);
     }
 
     .theme-icon {
       width: 12px;
       height: 12px;
+      stroke: var(--text-primary);
+      transition: all 0.3s ease;
+      position: absolute;
     }
 
     .sun-icon {
-      color: #fbbf24;
+      opacity: 1;
+      transform: rotate(0deg);
+      stroke: #000000 !important;
     }
 
     .moon-icon {
-      color: #60a5fa;
       opacity: 0;
-      position: absolute;
+      transform: rotate(180deg);
     }
 
     [data-theme="dark"] .sun-icon {
       opacity: 0;
+      transform: rotate(-180deg);
     }
 
     [data-theme="dark"] .moon-icon {
       opacity: 1;
+      transform: rotate(0deg);
+      stroke: #ffffff !important;
     }
 
     /* Mobile Theme Toggle */
@@ -1282,7 +1291,7 @@
     }
 
     [data-theme="dark"] .theme-toggle-mobile .theme-toggle-thumb {
-      left: 20px;
+      transform: translateX(20px);
     }
 
     .navbar-section .navbar-right a,
