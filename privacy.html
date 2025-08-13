@@ -524,15 +524,78 @@
   </style>
 </head>
 <body>
-  <!-- Navbar -->
   <section class="navbar-section">
-    <div class="navbar-container">
-      <div class="navbar-left">
+    <div class="navbar-container hide-navbar start-show-navbar">
+      <div class="navbar-inner">
+      <div class="navbar-left delay-0">
         <div class="navbar-logo"></div>
         <span class="navbar-company">Green<span class="green-simple">Sun.</span></span>
+      </div> 
+      <div class="navbar-center">
+        <button class="nav-link" data-section="about-section" data-i18n="nav-about">O nas</button>
+        <button class="nav-link" data-section="services-section" data-i18n="nav-services">Usługi</button>
+        <button class="nav-link" data-section="gallery-section" data-i18n="nav-gallery">Realizacje</button>
+        <button class="nav-link" data-section="contact-section" data-i18n="nav-contact">Kontakt</button>
+      </div>
+      <div class="mobile-nav-controls">
+        <div class="mobile-language-switcher">
+          <button class="current-lang">
+            <div class="flag pl"></div>
+            <span class="lang-text">PL</span>
+          </button>
+          <div class="dropdown">
+            <button data-lang="pl">
+              <div class="flag pl"></div>
+              <span>Polski</span>
+            </button>
+            <button data-lang="en">
+              <div class="flag en"></div>
+              <span>English</span>
+            </button>
+            <button data-lang="fr">
+              <div class="flag fr"></div>
+              <span>Français</span>
+            </button>
+          </div>
+        </div>
+        <!-- Mobile Theme Toggle -->
+        <button class="theme-toggle theme-toggle-mobile" aria-label="Toggle theme">
+          <div class="theme-toggle-track">
+            <div class="theme-toggle-thumb">
+              <svg class="theme-icon sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="5"/>
+                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+              </svg>
+              <svg class="theme-icon moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+              </svg>
+            </div>
+          </div>
+        </button>
+        <button class="hamburger-icon" aria-label="Toggle menu"></button>
       </div>
       <div class="navbar-right">
-        <a href="/" class="home-btn">Strona główna</a>
+        <div class="language-switcher">
+          <button class="current-lang">
+            <div class="flag pl"></div>
+            <span class="lang-text">PL</span>
+          </button>
+          <div class="dropdown">
+            <button data-lang="pl">
+              <div class="flag pl"></div>
+              <span>Polski</span>
+            </button>
+            <button data-lang="en">
+              <div class="flag en"></div>
+              <span>English</span>
+            </button>
+            <button data-lang="fr">
+              <div class="flag fr"></div>
+              <span>Français</span>
+            </button>
+          </div>
+        </div>
+        <!-- Theme Toggle -->
         <button class="theme-toggle" aria-label="Toggle theme">
           <div class="theme-toggle-track">
             <div class="theme-toggle-thumb">
@@ -546,6 +609,23 @@
             </div>
           </div>
         </button>
+        <a href="https://www.facebook.com/greensun" target="_blank" rel="noopener" class="icon-facebook"></a>
+        <a href="https://www.instagram.com/greensun" target="_blank" rel="noopener" class="icon-instagram"></a>
+        <a href="https://www.linkedin.com" target="_blank" rel="noopener" class="icon-linkedin"></a>
+      </div>
+      </div>
+    </div>
+    <div class="mobile-nav-overlay">
+      <div class="mobile-nav-center">
+        <button class="nav-link" data-section="about-section" data-i18n="nav-about">O nas</button>
+        <button class="nav-link" data-section="services-section" data-i18n="nav-services">Usługi</button>
+        <button class="nav-link" data-section="gallery-section" data-i18n="nav-gallery">Realizacje</button>
+        <button class="nav-link" data-section="contact-section" data-i18n="nav-contact">Kontakt</button>
+      </div>
+      <div class="mobile-nav-right">
+        <a href="https://www.facebook.com/greensun" target="_blank" rel="noopener" class="icon-facebook-mobile"></a>
+        <a href="https://www.instagram.com/greensun" target="_blank" rel="noopener" class="icon-instagram-mobile"></a>
+        <a href="https://www.linkedin.com" target="_blank" rel="noopener" class="icon-linkedin-mobile"></a>
       </div>
     </div>
   </section>
@@ -673,8 +753,8 @@
     </div>
   </main>
 
-  <!-- Footer -->
-  <footer class="footer-section">
+  <!-- ===== STOPKA ===== -->
+  <footer class="footer-section" id="footer-section">
     <div class="footer-container">
       <div class="footer-content">
         <div class="footer-brand">
@@ -682,45 +762,51 @@
             <div class="footer-brand-logo"></div>
             <h3>Green<span class="green-simple">Sun.</span></h3>
           </div>
-          <p>Profesjonalny montaż farm fotowoltaicznych na lądzie i wodzie. Tworzymy zrównoważoną przyszłość energetyczną w całej Europie.</p>
+          <p data-i18n="footer-description">Profesjonalny montaż farm fotowoltaicznych na lądzie i wodzie. Tworzymy zrównoważoną przyszłość energetyczną w całej Europie.</p>
+          <div class="footer-social">
+            <!-- Ikony social media będą załadowane przez JS -->
+            <a href="https://www.facebook.com" target="_blank" class="icon-facebook-footer"></a>
+            <a href="https://www.instagram.com" target="_blank" class="icon-instagram-footer"></a>
+            <a href="https://www.linkedin.com" target="_blank" class="icon-linkedin-footer"></a>
+          </div>
         </div>
         
         <div class="footer-column">
-          <h4>Usługi</h4>
+          <h4 data-i18n="footer-services">Usługi</h4>
           <ul>
-            <li><a href="/#services-section">Farmy lądowe</a></li>
-            <li><a href="/#services-section">Farmy wodne</a></li>
-            <li><a href="/#services-section">Doradztwo</a></li>
-            <li><a href="/#gallery-section">Realizacje</a></li>
+            <li><a href="#services-section" data-i18n="footer-land-farms">Farmy lądowe</a></li>
+            <li><a href="#services-section" data-i18n="footer-water-farms">Farmy wodne</a></li>
+            <li><a href="#services-section" data-i18n="footer-consulting">Doradztwo</a></li>
+            <li><a href="#gallery-section" data-i18n="footer-projects">Realizacje</a></li>
           </ul>
         </div>
         
         <div class="footer-column">
-          <h4>Firma</h4>
+          <h4 data-i18n="footer-company">Firma</h4>
           <ul>
-            <li><a href="/#about-section">O nas</a></li>
-            <li><a href="/#gallery-section">Portfolio</a></li>
-            <li><a href="/careers">Kariera</a></li>
-            <li><a href="/blog">Blog</a></li>
+            <li><a href="#about-section" data-i18n="footer-about">O nas</a></li>
+            <li><a href="#gallery-section" data-i18n="footer-portfolio">Portfolio</a></li>
+            <li><a href="/careers" data-i18n="footer-careers">Kariera</a></li>
+            <li><a href="/blog" data-i18n="footer-blog">Blog</a></li>
           </ul>
         </div>
         
         <div class="footer-column">
-          <h4>Kontakt</h4>
+          <h4 data-i18n="footer-contact">Kontakt</h4>
           <ul>
             <li><a href="mailto:contact@greensun.pl">contact@greensun.pl</a></li>
             <li><a href="tel:+48123456789">+48 123 456 789</a></li>
-            <li>Warszawa, Polska</li>
-            <li><a href="/#contact-section">Formularz kontaktowy</a></li>
+            <li data-i18n="footer-location">Warszawa, Polska</li>
+            <li><a href="#contact-section" data-i18n="footer-contact-form">Formularz kontaktowy</a></li>
           </ul>
         </div>
       </div>
       
       <div class="footer-bottom">
-        <div>&copy; 2024 GreenSun. Wszystkie prawa zastrzeżone.</div>
+        <div data-i18n="footer-copyright">&copy; 2024 GreenSun. Wszystkie prawa zastrzeżone.</div>
         <div>
-          <a href="/privacy">Polityka Prywatności</a> | 
-          <a href="/terms">Regulamin</a>
+          <a href="privacy.html" data-i18n="footer-privacy">Polityka Prywatności</a> | 
+          <a href="terms.html" data-i18n="footer-terms">Regulamin</a>
         </div>
       </div>
     </div>
