@@ -2857,6 +2857,19 @@
     text-decoration: none;
   }
 
+  .footer-bottom a:hover {
+    color: var(--neutral-white);
+  }
+
+  /* Ensure footer links stay consistent in dark mode */
+  [data-theme="dark"] .footer-bottom a {
+    color: #e8f8ed;
+  }
+
+  [data-theme="dark"] .footer-bottom a:hover {
+    color: var(--neutral-white);
+  }
+
   @media (max-width: 991px) {
     .footer-content {
       grid-template-columns: 1fr 1fr;
