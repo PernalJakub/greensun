@@ -7,7 +7,6 @@
   <title>GreenSun. - Profesjonalny montaż farm fotowoltaicznych</title>
   <meta name="description" content="GreenSun - specjalizujemy się w montażu farm fotowoltaicznych na lądzie i wodzie. Ponad 1000 MW zrealizowanych projektów w Europie.">
   <meta name="keywords" content="fotowoltaika, farmy PV, montaż paneli słonecznych, energia słoneczna, wodne farmy fotowoltaiczne">
-  <meta name="theme-color" content="#f2f2f2" id="theme-color-meta">
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -530,12 +529,6 @@
       // Apply theme
       document.documentElement.setAttribute('data-theme', theme);
       
-      // Update theme-color meta tag
-      const themeColorMeta = document.getElementById('theme-color-meta');
-      if (themeColorMeta) {
-        themeColorMeta.setAttribute('content', theme === 'dark' ? '#1a1a1b' : '#f2f2f2');
-      }
-      
       // Ensure body has the proper background color immediately
       document.body.style.backgroundColor = theme === 'dark' ? '#0f0f10' : '#ffffff';
     }
@@ -550,12 +543,6 @@
           
           // Apply new theme
           document.documentElement.setAttribute('data-theme', newTheme);
-          
-          // Update theme-color meta tag
-          const themeColorMeta = document.getElementById('theme-color-meta');
-          if (themeColorMeta) {
-            themeColorMeta.setAttribute('content', newTheme === 'dark' ? '#1a1a1b' : '#f2f2f2');
-          }
           
           // Save preference
           localStorage.setItem('theme', newTheme);
@@ -579,13 +566,6 @@
         if (!savedTheme) {
           const newTheme = e.matches ? 'dark' : 'light';
           document.documentElement.setAttribute('data-theme', newTheme);
-          
-          // Update theme-color meta tag
-          const themeColorMeta = document.getElementById('theme-color-meta');
-          if (themeColorMeta) {
-            themeColorMeta.setAttribute('content', newTheme === 'dark' ? '#1a1a1b' : '#f2f2f2');
-          }
-          
           localStorage.setItem('theme', newTheme);
         }
       });
@@ -597,12 +577,6 @@
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       const theme = savedTheme || (prefersDark ? 'dark' : 'light');
       document.documentElement.setAttribute('data-theme', theme);
-      
-      // Update theme-color meta tag immediately
-      const themeColorMeta = document.getElementById('theme-color-meta');
-      if (themeColorMeta) {
-        themeColorMeta.setAttribute('content', theme === 'dark' ? '#1a1a1b' : '#f2f2f2');
-      }
     })();
 
     document.addEventListener('DOMContentLoaded', function() {
