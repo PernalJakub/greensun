@@ -1555,28 +1555,6 @@
 
     }
 
-    .card-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 1);
-      z-index: 2;
-      animation: fadeToTransparent 3s ease-out forwards;
-      pointer-events: none;
-      border-radius: 24px;
-    }
-
-    @keyframes fadeToTransparent {
-      0% {
-        background-color: rgba(0, 0, 0, 1);
-      }
-      100% {
-        background-color: rgba(0, 0, 0, 0.3);
-      }
-    }
-
     .slider-container {
       position: relative;
       width: 100%;
@@ -1683,9 +1661,10 @@
       width: 100%;
       color: #ffffff;
       position: relative;
-      z-index: 3; /* Above overlay (z-index: 2) and video (z-index: 0) */
+      z-index: 1;
     }
-
+    
+    /* Make sure CTA text is visible over video in both themes */
     [data-theme="light"] .slider-section .center-cta {
       color: #ffffff;
     }
@@ -1699,12 +1678,6 @@
       line-height: var(--line-height-display-medium);
       margin-bottom: var(--space-md);
       margin-top: 100px;
-    }
-
-    @media (max-width: 599px) {
-      .slider-section .center-cta h2 {
-        margin-top: 50px;
-      }
     }
 
     .slider-section .center-cta p {
@@ -2526,14 +2499,9 @@
 
   /* ===== FORMULARZ KONTAKTOWY ===== */
   .contact-section {
-    padding: var(--space-6xl) 10px;
+    padding: var(--space-6xl) var(--space-lg);
     background: var(--bg-secondary);
     overflow: hidden;
-  }
-
-  /* Light theme - white background for section, form gets current bg color */
-  [data-theme="light"] .contact-section {
-    background: var(--neutral-white);
   }
 
   .contact-container {
@@ -2555,18 +2523,13 @@
   .contact-header p {
     font-size: var(--body-large);
     color: var(--text-secondary);
-    padding: 0 10px;
   }
 
   .contact-form {
     background: var(--bg-primary);
     padding: var(--space-5xl);
-    border-radius: 24px;
-  }
-
-  /* Light theme - form gets the previous section background color */
-  [data-theme="light"] .contact-form {
-    background: var(--bg-secondary);
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.1);
   }
 
   .form-group {
@@ -3180,8 +3143,7 @@
               <source src="./media/GreenSun.webm" type="video/webm">
               Przeglądarka nie obsługuje formatu WebM.
             </video>
-          </div>
-          <div class="card-overlay"></div>
+          </div>  
           <div class="fade-in-item center-cta fix">
             <h2 data-i18n="hero-title">Energia słoneczna dla <span class="green-simple">przyszłości.</span></h2>
             <p data-i18n="hero-subtitle">Specjalizujemy się w montażu farm fotowoltaicznych na lądzie i na wodzie. <br>Tworzymy zrównoważoną przyszłość energetyczną.</p>
