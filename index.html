@@ -892,8 +892,17 @@
         --body-small: var(--body-small-m);
       }
     }
-    * {
+    *, *::before, *::after {
       box-sizing: border-box;
+    }
+
+    /* Prevent horizontal scrolling on all elements */
+    * {
+      max-width: 100%;
+    }
+
+    html {
+      overflow-x: hidden;
     }
 
     body {
@@ -903,6 +912,8 @@
       font-family: var(--font-rest);
       overflow-x: hidden;
       transition: background-color 0.3s ease, color 0.3s ease;
+      width: 100%;
+      max-width: 100vw;
     }
        
     h1, h2, h3, h4, h5, h6, p {
@@ -1507,7 +1518,7 @@
     }
 
     .navbar-section .navbar-container.start-show-navbar {
-      transform: translateY(+10%);
+      transform: translateY(-10px);
       opacity: 0;
       transition: transform 1s ease, opacity 1.2s ease;
     }
@@ -1533,7 +1544,7 @@
 
     .slider-section {
       position: relative;
-      width: 100vw;
+      width: 100%;
       height: 100vh;
       padding-top: 60px;
       overflow: hidden;
@@ -1899,6 +1910,7 @@
     min-height: 100vh;
     display: flex;
     align-items: center;
+    overflow: hidden;
   }
 
   .about-container {
@@ -2013,6 +2025,7 @@
   .services-section {
     padding: var(--space-6xl) var(--space-lg);
     background: var(--neutral-very-light);
+    overflow: hidden;
   }
 
   .services-container {
@@ -2153,6 +2166,7 @@
   .gallery-section {
     padding: var(--space-6xl) var(--space-lg);
     background: var(--bg-primary);
+    overflow: hidden;
   }
 
   .gallery-container {
@@ -2368,6 +2382,7 @@
   .why-us-section {
     padding: var(--space-6xl) var(--space-lg);
     background: var(--neutral-very-light);
+    overflow: hidden;
   }
 
   .why-us-container {
@@ -2486,6 +2501,7 @@
   .contact-section {
     padding: var(--space-6xl) var(--space-lg);
     background: var(--bg-secondary);
+    overflow: hidden;
   }
 
   .contact-container {
@@ -2957,7 +2973,7 @@
 
   .slide-in-left {
     opacity: 0;
-    transform: translateX(-50px);
+    transform: translateX(-30px);
     transition: opacity 0.8s ease, transform 0.8s ease;
   }
 
@@ -2968,7 +2984,7 @@
 
   .slide-in-right {
     opacity: 0;
-    transform: translateX(50px);
+    transform: translateX(30px);
     transition: opacity 0.8s ease, transform 0.8s ease;
   }
 
