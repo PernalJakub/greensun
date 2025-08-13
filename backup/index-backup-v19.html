@@ -8,9 +8,6 @@
   <meta name="description" content="GreenSun - specjalizujemy się w montażu farm fotowoltaicznych na lądzie i wodzie. Ponad 1000 MW zrealizowanych projektów w Europie.">
   <meta name="keywords" content="fotowoltaika, farmy PV, montaż paneli słonecznych, energia słoneczna, wodne farmy fotowoltaiczne">
   <meta name="theme-color" content="#f2f2f2" id="theme-color-meta">
-  <meta name="msapplication-navbutton-color" content="#f2f2f2" id="ms-nav-color">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" id="apple-status-bar">
-  <meta name="mobile-web-app-capable" content="yes">
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,29 +26,6 @@
   
   <!-- Internationalization Script -->
   <script>
-    // Helper function to update all meta tags for mobile browsers
-    function updateMobileMetaTags(theme) {
-      const color = theme === 'dark' ? '#1a1a1b' : '#f2f2f2';
-      
-      // Theme color for Chrome Mobile
-      const themeColorMeta = document.getElementById('theme-color-meta');
-      if (themeColorMeta) {
-        themeColorMeta.setAttribute('content', color);
-      }
-      
-      // MS Application nav button color
-      const msNavColor = document.getElementById('ms-nav-color');
-      if (msNavColor) {
-        msNavColor.setAttribute('content', color);
-      }
-      
-      // Apple status bar style
-      const appleStatusBar = document.getElementById('apple-status-bar');
-      if (appleStatusBar) {
-        appleStatusBar.setAttribute('content', theme === 'dark' ? 'black-translucent' : 'default');
-      }
-    }
-
     const translations = {
       pl: {
         'site-title': 'GreenSun - Profesjonalny montaż farm fotowoltaicznych',
@@ -556,8 +530,11 @@
       // Apply theme
       document.documentElement.setAttribute('data-theme', theme);
       
-      // Update mobile meta tags
-      updateMobileMetaTags(theme);
+      // Update theme-color meta tag
+      const themeColorMeta = document.getElementById('theme-color-meta');
+      if (themeColorMeta) {
+        themeColorMeta.setAttribute('content', theme === 'dark' ? '#1a1a1b' : '#f2f2f2');
+      }
       
       // Ensure body has the proper background color immediately
       document.body.style.backgroundColor = theme === 'dark' ? '#1a1a1b' : '#f2f2f2';
@@ -574,8 +551,11 @@
           // Apply new theme
           document.documentElement.setAttribute('data-theme', newTheme);
           
-          // Update mobile meta tags
-          updateMobileMetaTags(newTheme);
+          // Update theme-color meta tag
+          const themeColorMeta = document.getElementById('theme-color-meta');
+          if (themeColorMeta) {
+            themeColorMeta.setAttribute('content', newTheme === 'dark' ? '#1a1a1b' : '#f2f2f2');
+          }
           
           // Save preference
           localStorage.setItem('theme', newTheme);
@@ -600,8 +580,11 @@
           const newTheme = e.matches ? 'dark' : 'light';
           document.documentElement.setAttribute('data-theme', newTheme);
           
-          // Update mobile meta tags
-          updateMobileMetaTags(newTheme);
+          // Update theme-color meta tag
+          const themeColorMeta = document.getElementById('theme-color-meta');
+          if (themeColorMeta) {
+            themeColorMeta.setAttribute('content', newTheme === 'dark' ? '#1a1a1b' : '#f2f2f2');
+          }
           
           localStorage.setItem('theme', newTheme);
         }
@@ -615,8 +598,11 @@
       const theme = savedTheme || (prefersDark ? 'dark' : 'light');
       document.documentElement.setAttribute('data-theme', theme);
       
-      // Update mobile meta tags immediately
-      updateMobileMetaTags(theme);
+      // Update theme-color meta tag immediately
+      const themeColorMeta = document.getElementById('theme-color-meta');
+      if (themeColorMeta) {
+        themeColorMeta.setAttribute('content', theme === 'dark' ? '#1a1a1b' : '#f2f2f2');
+      }
     })();
 
     document.addEventListener('DOMContentLoaded', function() {

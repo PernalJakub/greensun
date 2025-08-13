@@ -6,6 +6,9 @@
   <title>Regulamin - GreenSun.</title>
   <meta name="description" content="Regulamin świadczenia usług GreenSun - warunki korzystania z usług.">
   <meta name="theme-color" content="#f2f2f2" id="theme-color-meta">
+  <meta name="msapplication-navbutton-color" content="#f2f2f2" id="ms-nav-color">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" id="apple-status-bar">
+  <meta name="mobile-web-app-capable" content="yes">
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -827,6 +830,29 @@
   </footer>
 
   <script>
+    // Helper function to update all meta tags for mobile browsers
+    function updateMobileMetaTags(theme) {
+      const color = theme === 'dark' ? '#1a1a1b' : '#f2f2f2';
+      
+      // Theme color for Chrome Mobile
+      const themeColorMeta = document.getElementById('theme-color-meta');
+      if (themeColorMeta) {
+        themeColorMeta.setAttribute('content', color);
+      }
+      
+      // MS Application nav button color
+      const msNavColor = document.getElementById('ms-nav-color');
+      if (msNavColor) {
+        msNavColor.setAttribute('content', color);
+      }
+      
+      // Apple status bar style
+      const appleStatusBar = document.getElementById('apple-status-bar');
+      if (appleStatusBar) {
+        appleStatusBar.setAttribute('content', theme === 'dark' ? 'black-translucent' : 'default');
+      }
+    }
+
     // Theme management
     function initializeTheme() {
       const savedTheme = localStorage.getItem('theme');
@@ -842,11 +868,8 @@
       
       document.documentElement.setAttribute('data-theme', theme);
       
-      // Update theme-color meta tag
-      const themeColorMeta = document.getElementById('theme-color-meta');
-      if (themeColorMeta) {
-        themeColorMeta.setAttribute('content', theme === 'dark' ? '#1a1a1b' : '#f2f2f2');
-      }
+      // Update mobile meta tags
+      updateMobileMetaTags(theme);
       
       document.body.style.backgroundColor = theme === 'dark' ? '#1a1a1b' : '#f2f2f2';
     }
@@ -861,11 +884,8 @@
           
           document.documentElement.setAttribute('data-theme', newTheme);
           
-          // Update theme-color meta tag
-          const themeColorMeta = document.getElementById('theme-color-meta');
-          if (themeColorMeta) {
-            themeColorMeta.setAttribute('content', newTheme === 'dark' ? '#1a1a1b' : '#f2f2f2');
-          }
+          // Update mobile meta tags
+          updateMobileMetaTags(newTheme);
           
           localStorage.setItem('theme', newTheme);
         });
@@ -879,10 +899,7 @@
       const theme = savedTheme || (prefersDark ? 'dark' : 'light');
       document.documentElement.setAttribute('data-theme', theme);
       
-      const themeColorMeta = document.getElementById('theme-color-meta');
-      if (themeColorMeta) {
-        themeColorMeta.setAttribute('content', theme === 'dark' ? '#1a1a1b' : '#f2f2f2');
-      }
+      updateMobileMetaTags(theme);
     })();
 
     document.addEventListener('DOMContentLoaded', function() {
